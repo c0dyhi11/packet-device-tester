@@ -185,17 +185,17 @@ def poll_devices(args, manager, devices):
                 create = dt.strptime(poll_device['created_at'], "%Y-%m-%dT%H:%M:%SZ")
                 finish = dt.strptime(poll_device['updated_at'], "%Y-%m-%dT%H:%M:%SZ")
                 duration = (finish - create).total_seconds()
-                insert_record({
-                    'uuid': poll_device['id'],
-                    'state': poll_device['state'],
-                    'hostname': poll_device['hostname'],
-                    'facility': poll_device['facility']['code'],
-                    'plan': poll_device['plan']['name'],
-                    'operating_system': poll_device['operating_system']['slug'],
-                    'created_at': create.strftime('%Y-%m-%d %H:%M:%S'),
-                    'updated_at': finish.strftime('%Y-%m-%d %H:%M:%S'),
-                    'creation_duration': duration
-                })
+                #insert_record({
+                #    'uuid': poll_device['id'],
+                #    'state': poll_device['state'],
+                #    'hostname': poll_device['hostname'],
+                #    'facility': poll_device['facility']['code'],
+                #    'plan': poll_device['plan']['name'],
+                #    'operating_system': poll_device['operating_system']['slug'],
+                #    'created_at': create.strftime('%Y-%m-%d %H:%M:%S'),
+                #    'updated_at': finish.strftime('%Y-%m-%d %H:%M:%S'),
+                #    'creation_duration': duration
+                #})
                 devices.remove(device)
                 print("Deleting {}!".format(poll_device['hostname']))
                 poll_device.delete()
@@ -231,17 +231,17 @@ def timeout_devices(manager, devices):
         create = dt.strptime(poll_device['created_at'], "%Y-%m-%dT%H:%M:%SZ")
         finish = time()
         duration = (finish - create).total_seconds()
-        insert_record({
-            'uuid': poll_device['id'],
-            'state': "timedout",
-            'hostname': poll_device['hostname'],
-            'facility': poll_device['facility']['code'],
-            'plan': poll_device['plan']['name'],
-            'operating_system': poll_device['operating_system']['slug'],
-            'created_at': create.strftime('%Y-%m-%d %H:%M:%S'),
-            'updated_at': finish.strftime('%Y-%m-%d %H:%M:%S'),
-            'creation_duration': duration
-        })
+        #insert_record({
+        #    'uuid': poll_device['id'],
+        #    'state': "timedout",
+        #    'hostname': poll_device['hostname'],
+        #    'facility': poll_device['facility']['code'],
+        #    'plan': poll_device['plan']['name'],
+        #    'operating_system': poll_device['operating_system']['slug'],
+        #    'created_at': create.strftime('%Y-%m-%d %H:%M:%S'),
+        #    'updated_at': finish.strftime('%Y-%m-%d %H:%M:%S'),
+        #    'creation_duration': duration
+        #})
 
 
 def validate_args(args, manager):
